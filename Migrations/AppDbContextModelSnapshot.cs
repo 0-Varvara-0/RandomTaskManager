@@ -92,6 +92,29 @@ namespace RandomTaskManager.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Categories");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Description = "Физические упражнения и активность",
+                            Icon = "",
+                            Name = "Спорт и Здоровье"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Description = "Чтение, языки, программирование",
+                            Icon = "",
+                            Name = "Обучение и Развитие"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Description = "Уборка, планирование, порядок",
+                            Icon = "",
+                            Name = "Быт и Органайзер"
+                        });
                 });
 
             modelBuilder.Entity("RandomTaskManager.Models.Entities.Tag", b =>
@@ -152,6 +175,41 @@ namespace RandomTaskManager.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Tasks");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CategoryId = 1,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Быстрый разгон крови и бодрость на день",
+                            Difficulty = 1,
+                            DurationMinutes = 0,
+                            Status = 0,
+                            Title = "Сделать 20 отжиманий"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CategoryId = 2,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Любая художественная или техническая литература",
+                            Difficulty = 2,
+                            DurationMinutes = 0,
+                            Status = 0,
+                            Title = "Прочитать 15 страниц книги"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CategoryId = 3,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Удалить ненужные файлы и рассортировать загрузки",
+                            Difficulty = 1,
+                            DurationMinutes = 0,
+                            Status = 0,
+                            Title = "Разобрать рабочий стол"
+                        });
                 });
 
             modelBuilder.Entity("RandomTaskManager.Models.Entities.User", b =>
@@ -176,9 +234,24 @@ namespace RandomTaskManager.Migrations
                     b.Property<int>("Role")
                         .HasColumnType("integer");
 
+                    b.Property<string>("Username")
+                        .IsRequired()
+                        .HasColumnType("text");
+
                     b.HasKey("Id");
 
                     b.ToTable("Users");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Email = "student@nsu.ru",
+                            PasswordHash = "test_hash_123",
+                            Role = 0,
+                            Username = "TestUser"
+                        });
                 });
 
             modelBuilder.Entity("RandomTaskManager.Models.Entities.UserLimit", b =>
