@@ -54,11 +54,17 @@ namespace RandomTaskManager.Data
                 new Category { Id = 3, Name = "Быт и Органайзер", Description = "Уборка, планирование, порядок" }
             );
 
-            // Заполняем каталог доступных задач
+            // Сидинг каталога задач для разных периодов
             modelBuilder.Entity<Task>().HasData(
-                new Task { Id = 1, Title = "Сделать 20 отжиманий", Description = "Быстрый разгон крови и бодрость на день", Difficulty = Difficulty.Easy, Status = TaskStatus.Available, CategoryId = 1, CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, DateTimeKind.Utc) },
-                new Task { Id = 2, Title = "Прочитать 15 страниц книги", Description = "Любая художественная или техническая литература", Difficulty = Difficulty.Medium, Status = TaskStatus.Available, CategoryId = 2, CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, DateTimeKind.Utc) },
-                new Task { Id = 3, Title = "Разобрать рабочий стол", Description = "Удалить ненужные файлы и рассортировать загрузки", Difficulty = Difficulty.Easy, Status = TaskStatus.Available, CategoryId = 3, CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, DateTimeKind.Utc) }
+                // Дневные задачи
+                new Task { Id = 1, Title = "Сделать 20 отжиманий", Description = "Быстрый разгон крови", Difficulty = Difficulty.Easy, Status = TaskStatus.Available, Period = Period.Day, CategoryId = 1, CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, DateTimeKind.Utc) },
+                new Task { Id = 2, Title = "Выпить 2 литра воды", Description = "Поддержание водного баланса", Difficulty = Difficulty.Easy, Status = TaskStatus.Available, Period = Period.Day, CategoryId = 1, CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, DateTimeKind.Utc) },
+
+                // Недельные задачи
+                new Task { Id = 3, Title = "Прочитать 100 страниц книги", Description = "Любая художественная или учебная литература", Difficulty = Difficulty.Medium, Status = TaskStatus.Available, Period = Period.Week, CategoryId = 2, CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, DateTimeKind.Utc) },
+
+                // Месячные задачи
+                new Task { Id = 4, Title = "Пройти модуль онлайн-курса", Description = "Завершить все лекции и практические задания", Difficulty = Difficulty.Hard, Status = TaskStatus.Available, Period = Period.Month, CategoryId = 2, CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, DateTimeKind.Utc) }
             );
         }
     }

@@ -12,7 +12,8 @@ namespace RandomTaskManager.Models.Entities
         public int DurationMinutes { get; set; } // Время на выполнение
 
         public Difficulty Difficulty { get; set; }
-        public TaskStatus Status { get; set; } = TaskStatus.Active;
+        public TaskStatus Status { get; set; } = TaskStatus.Available;
+        public Period Period { get; set; } = Period.Day;
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 
         // Внешний ключ и связь с категорией
