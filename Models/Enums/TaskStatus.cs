@@ -3,9 +3,10 @@
     public enum TaskStatus
     {
         Available = 0,
-        Active = 1,
-        Completed = 2,
-        Expired = 3,
-        Canceled = 4
+        Pending = 1,
+        Active = 2,
+        Completed = 3,
+        Expired = 4,
+        Canceled = 5
     }
 }

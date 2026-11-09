@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using RandomTaskManager.Data;
-//using RandomTaskManager.Services.Implementations;
-//using RandomTaskManager.Services.Interfaces;
+using RandomTaskManager.Services.Implementations;
+using RandomTaskManager.Services.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args); //Конфигурация приложения
 
@@ -10,8 +10,8 @@ builder.Services.AddDbContext<AppDbContext>(options => // говорит исп�
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 // Регистрация сервисов бизнес-логики
-//builder.Services.AddScoped<ILimitService, LimitService>();
-//builder.Services.AddScoped<ITaskService, TaskService>();
+builder.Services.AddScoped<ILimitService, LimitService>();
+builder.Services.AddScoped<ITaskService, TaskService>();
 
 // Добавление поддержки MVC
 builder.Services.AddControllersWithViews();
