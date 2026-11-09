@@ -158,6 +158,9 @@ namespace RandomTaskManager.Migrations
                     b.Property<int>("DurationMinutes")
                         .HasColumnType("integer");
 
+                    b.Property<int>("Period")
+                        .HasColumnType("integer");
+
                     b.Property<int>("Status")
                         .HasColumnType("integer");
 
@@ -182,33 +185,48 @@ namespace RandomTaskManager.Migrations
                             Id = 1,
                             CategoryId = 1,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Description = "Быстрый разгон крови и бодрость на день",
+                            Description = "Быстрый разгон крови",
                             Difficulty = 1,
                             DurationMinutes = 0,
+                            Period = 3,
                             Status = 0,
                             Title = "Сделать 20 отжиманий"
                         },
                         new
                         {
                             Id = 2,
-                            CategoryId = 2,
+                            CategoryId = 1,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Description = "Любая художественная или техническая литература",
-                            Difficulty = 2,
+                            Description = "Поддержание водного баланса",
+                            Difficulty = 1,
                             DurationMinutes = 0,
+                            Period = 3,
                             Status = 0,
-                            Title = "Прочитать 15 страниц книги"
+                            Title = "Выпить 2 литра воды"
                         },
                         new
                         {
                             Id = 3,
-                            CategoryId = 3,
+                            CategoryId = 2,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Description = "Удалить ненужные файлы и рассортировать загрузки",
-                            Difficulty = 1,
+                            Description = "Любая художественная или учебная литература",
+                            Difficulty = 2,
                             DurationMinutes = 0,
+                            Period = 4,
                             Status = 0,
-                            Title = "Разобрать рабочий стол"
+                            Title = "Прочитать 100 страниц книги"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CategoryId = 2,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Завершить все лекции и практические задания",
+                            Difficulty = 3,
+                            DurationMinutes = 0,
+                            Period = 5,
+                            Status = 0,
+                            Title = "Пройти модуль онлайн-курса"
                         });
                 });
 
@@ -267,6 +285,9 @@ namespace RandomTaskManager.Migrations
 
                     b.Property<int>("Period")
                         .HasColumnType("integer");
+
+                    b.Property<DateTime>("ResetAt")
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<int>("Used")
                         .HasColumnType("integer");

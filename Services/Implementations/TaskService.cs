@@ -118,5 +118,22 @@ namespace RandomTaskManager.Services.Implementations
                 .AsNoTracking() // для оптимизации запроса на чтение
                 .ToListAsync();
         }
+
+        // Сброс базы данных
+        public async Task ResetDatabaseStateAsync()
+        {
+            // Возвращаем все задачи в исходный доступный статус
+            var tasks = await _context.Tasks.ToListAsync();
+            foreach (var task in tasks)
+            {
+                task.Status = TaskStatus.Available;
+                task.UserId = null;
+            }
+
+            // Очищаем историю суточных лимитов пользователей
+            _context.UserLimits.RemoveRange(_context.UserLimits);
+
+            await _context.SaveChangesAsync();
+        }
     }
 }

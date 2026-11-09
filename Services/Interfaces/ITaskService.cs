@@ -16,5 +16,8 @@ namespace RandomTaskManager.Services.Interfaces
 
         // Возвращает список всех активных задач пользователя (максимум 3 — по одной на каждый слот)
         Task<List<TaskEntity>> GetUserActiveTasksAsync(int userId);
+
+        // Сброс базы данных
+        Task ResetDatabaseStateAsync();
     }
 }

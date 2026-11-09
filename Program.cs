@@ -13,27 +13,26 @@ builder.Services.AddDbContext<AppDbContext>(options => // говорит исп�
 builder.Services.AddScoped<ILimitService, LimitService>();
 builder.Services.AddScoped<ITaskService, TaskService>();
 
-// Добавление поддержки MVC
-builder.Services.AddControllersWithViews();
+// Добавление поддержки контроллеров
+builder.Services.AddControllers();
+
+// Добавление генераторов спецификации Swagger / OpenAPI
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-// Настройка конвейера обработки HTTP-запросов
-if (!app.Environment.IsDevelopment()) // Если не на пк разработчика
+// Включение веб-интерфейса Swagger UI в режиме разработки
+if (app.Environment.IsDevelopment())
 {
-    app.UseExceptionHandler("/Home/Error");
-    app.UseHsts();
+    app.UseSwagger();
+    app.UseSwaggerUI();
 }
 
 app.UseHttpsRedirection(); // Перенаправление HTTP-запросов на HTTPS
-app.UseStaticFiles(); // Поддержка статических файлов
-
 app.UseRouting(); // Маршрутизация запросов
-
 app.UseAuthorization();
 
-app.MapControllerRoute( // эндпоинт маршрутизации
-    name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+app.MapControllers(); // эндпоинт маршрутизации
 
 app.Run();
